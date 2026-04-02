@@ -1,4 +1,4 @@
-name: Download OSBoxes Image and Upload Artifact
+name: Download GGUF Model and Upload Artifact
 
 on:
   workflow_dispatch:
@@ -11,10 +11,10 @@ jobs:
       - name: Create download directory
         run: mkdir -p downloads
 
-      - name: Download file from SourceForge
+      - name: Download file from Hugging Face
         run: |
-          wget -O downloads/ubuntu-24.04-osboxes.7z \
-            "https://sourceforge.net/projects/osboxes/files/v/vm/55-U--u/24.04/64bit.7z/download"
+          wget -O downloads/Qwen2.5-7B-Instruct-Q6_K.gguf \
+            "https://huggingface.co/bartowski/Qwen2.5-7B-Instruct-GGUF/resolve/main/Qwen2.5-7B-Instruct-Q6_K.gguf?download=true"
 
       - name: Verify download
         run: ls -lh downloads
@@ -22,5 +22,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ubuntu-24.04-osboxes
-          path: downloads/ubuntu-24.04-osboxes.7z
+          name: qwen2.5-7b-instruct-q6_k-gguf
+          path: downloads/Qwen2.5-7B-Instruct-Q6_K.gguf
